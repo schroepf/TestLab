@@ -2,7 +2,6 @@ package de.schroepf.androidxmlrunlistener;
 
 import android.app.Instrumentation;
 import android.os.Build;
-import android.os.Environment;
 import android.support.test.internal.runner.listener.InstrumentationRunListener;
 import android.util.Log;
 import android.util.Xml;
@@ -71,14 +70,10 @@ public class XmlRunListener extends InstrumentationRunListener {
         final String fileName = "report.xml";
 
         try {
-//            instr.getContext().getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS)
-//            instr.getTargetContext().getFilesDir().getAbsolutePath()
-            File outputFile = new File(instr.getTargetContext().getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS), fileName);
-
-            // Seems like we need to put this into the tart application's context as for the instrumentation app's
+            // Seems like we need to put this into the target application's context as for the instrumentation app's
             // context we can never be sure if we have the correct permissions - and getFilesDir() seems to return null
-            //            File directory = instr.getTargetContext().getFilesDir();
-//            File outputFile = new File(directory, fileName);
+            File outputFile = new File(instr.getTargetContext().getExternalFilesDir(null), fileName);
+
             Log.d(TAG, "setInstrumentation: outputFile: " + outputFile);
             outputStream = new FileOutputStream(outputFile);
         } catch (FileNotFoundException e) {

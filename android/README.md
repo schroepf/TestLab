@@ -22,10 +22,10 @@ adb shell am instrument -w -r -e listener de.schroepf.androidxmlrunlistener.XmlR
 
 The `report.xml` file will be stored in the tests application's documents folder, e.g.:
 ```
-adb shell cat /storage/emulated/0/Android/data/de.schroepf.demoapp/files/Documents/report.xml
+adb shell cat /storage/emulated/0/Android/data/de.schroepf.demoapp/files/report.xml
 ```
 
 to copy it from the device to the computer:
 ```
-adb shell cat /storage/emulated/0/Android/data/de.schroepf.demoapp/files/Documents/report.xml
+adb shell cat /storage/emulated/0/Android/data/de.schroepf.demoapp/files/report.xml
 ```
