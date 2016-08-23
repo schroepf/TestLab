@@ -9,7 +9,7 @@ Add the following option to "Extra options" of your Instrumentation Tests run co
 
 ## Use from command line
 
-Àdd
+Add
 
 ```
 -e listener de.schroepf.androidxmlrunlistener.XmlRunListener

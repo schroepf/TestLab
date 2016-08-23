@@ -6,8 +6,6 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import de.schroepf.androidxmlrunlistener.XmlRunListener;
-
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
@@ -20,9 +18,9 @@ import static org.junit.Assert.assertTrue;
 @RunWith(AndroidJUnit4.class)
 public class MainActivityTest {
 
+    @Test
     @Ignore
     public void testHelloWorld() throws Exception {
-        XmlRunListener runListener = new XmlRunListener();
         onView(withId(R.id.hello_world_text_view)).check(matches(withText("This is a failing test")));
     }
 
