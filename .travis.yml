@@ -28,4 +28,4 @@ script:
     - android list sdk --no-ui --all --extended
     - cd android
     - touch local.properties
-    - ./gradlew assemble
+    - ./gradlew check
