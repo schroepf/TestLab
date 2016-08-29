@@ -13,6 +13,7 @@ android:
     - android-23
 
     # Additional components
+    - extra-android-m2repository
     #- extra-google-google_play_services
     #- extra-google-m2repository
     #- extra-android-m2repository
