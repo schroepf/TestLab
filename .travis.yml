@@ -25,4 +25,4 @@ android:
 
 script:
     cd android
-    gradlew assemble
+    ./gradlew assemble
