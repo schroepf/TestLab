@@ -1,5 +1,12 @@
 # android-xml-run-listener
 
+## Integrating android-xml-run-listener
+
+Add dependency to `build.gradle`:
+```
+androidTestCompile 'de.schroepf:android-xml-run-listener:0.1.2'
+```
+
 ## Use from Android Studio
 
 Add the following option to "Extra options" of your Instrumentation Tests run configurations:
@@ -27,5 +34,5 @@ adb shell cat /storage/emulated/0/Android/data/de.schroepf.demoapp/files/report.
 
 to copy it from the device to the computer:
 ```
-adb shell cat /storage/emulated/0/Android/data/de.schroepf.demoapp/files/report.xml
+adb pull /storage/emulated/0/Android/data/de.schroepf.demoapp/files/report.xml
 ```
