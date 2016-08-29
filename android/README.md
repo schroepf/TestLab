@@ -4,7 +4,7 @@
 
 Add dependency to `build.gradle`:
 ```
-androidTestCompile 'de.schroepf:android-xml-run-listener:0.1.2'
+androidTestCompile 'de.schroepf:android-xml-run-listener:0.1.3'
 ```
 
 ## Use from Android Studio
