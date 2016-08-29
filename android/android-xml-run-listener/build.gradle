@@ -20,7 +20,7 @@ android {
         versionCode 2
         versionName version
     }
-    
+
     buildTypes {
         release {
             minifyEnabled false

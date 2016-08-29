@@ -23,19 +23,13 @@ public class XmlRunListener extends InstrumentationRunListener {
     private static final String ENCODING_UTF_8 = "utf-8";
     private static final String NAMESPACE = null;
 
-    public static final String TOKEN_SUITE = "__suite__";
-    public static final String TOKEN_EXTERNAL = "__external__";
-
-    //    private static final String TAG_SUITES = "testsuites";
     private static final String TAG_SUITE = "testsuite";
     private static final String TAG_PROPERTIES = "properties";
     private static final String TAG_PROPERTY = "property";
     private static final String TAG_CASE = "testcase";
-    private static final String TAG_ERROR = "error";
     private static final String TAG_FAILURE = "failure";
     private static final String TAG_SKIPPED = "skipped";
 
-    private static final String ATTRIBUTE_ASSERTIONS = "assertions";
     private static final String ATTRIBUTE_CLASS = "classname";
     private static final String ATTRIBUTE_ERRORS = "errors";
     private static final String ATTRIBUTE_FAILURES = "failures";
@@ -145,7 +139,6 @@ public class XmlRunListener extends InstrumentationRunListener {
 
         xmlSerializer.attribute(NAMESPACE, ATTRIBUTE_TIME, Double.toString((double) runResult.getElapsedTime() / 1000.f));
         xmlSerializer.attribute(NAMESPACE, ATTRIBUTE_TIMESTAMP, runResult.startTimeAsIso());
-//        xmlSerializer.attribute(NAMESPACE, HOSTNAME, mHostName);
 
         xmlSerializer.startTag(NAMESPACE, TAG_PROPERTIES);
         printProperty("device.manufacturer", Build.MANUFACTURER);
@@ -207,10 +200,5 @@ public class XmlRunListener extends InstrumentationRunListener {
      */
     private String sanitize(String text) {
         return text.replace("\0", "<\\0>");
-    }
-
-    private String safeMessage(Throwable error) {
-        String message = error.getMessage();
-        return error.getClass().getName() + ": " + (message == null ? "<null>" : message);
     }
 }

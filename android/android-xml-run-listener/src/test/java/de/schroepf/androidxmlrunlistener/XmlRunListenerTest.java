@@ -20,20 +20,13 @@ public class XmlRunListenerTest {
     @Test
     public void testTestFailure() throws Exception {
         XmlRunListener runListener = new XmlRunListener(mockXmlSerializer);
+        runListener.testRunStarted(Description.createSuiteDescription(XmlRunListenerTest.class));
 
         Description description = Description.createTestDescription(Object.class, "aSimpleTestCase");
+        runListener.testStarted(description);
+
         Throwable throwable = new Throwable();
         Failure failure = new Failure(description, throwable);
         runListener.testFailure(failure);
-    }
-
-    @Test
-    public void testTestAssumptionFailure() throws Exception {
-
-    }
-
-    @Test
-    public void testTestIgnored() throws Exception {
-
     }
 }
