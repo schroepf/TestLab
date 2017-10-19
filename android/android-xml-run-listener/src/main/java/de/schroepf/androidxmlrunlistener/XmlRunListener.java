@@ -61,7 +61,7 @@ public class XmlRunListener extends InstrumentationRunListener {
     public void setInstrumentation(Instrumentation instr) {
         super.setInstrumentation(instr);
 
-        final String fileName = "report.xml";
+        final String fileName = getFileName(instr);
 
         try {
             // Seems like we need to put this into the target application's context as for the instrumentation app's
@@ -83,6 +83,16 @@ public class XmlRunListener extends InstrumentationRunListener {
             Log.e(TAG, "Unable to open serializer", e);
             throw new RuntimeException("Unable to open serializer: " + e.getMessage(), e);
         }
+    }
+
+    /**
+     * Get a file for the test report. Override this to create different file patterns.
+     *
+     * @param instrumentation The current instrumentation with context
+     * @return A file name to write the report to
+     */
+    protected String getFileName(Instrumentation instrumentation) {
+        return "report.xml";
     }
 
     @Override
