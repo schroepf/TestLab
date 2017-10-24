@@ -17,6 +17,20 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Map;
 
+/**
+ * An {@link InstrumentationRunListener} which writes the test results to JUnit style XML files to the
+ * {@code /storage/emulated/0/Android/data/<package-name>/files/} directory on the device.
+ *
+ * This listener will not override existing XML reports and instead will generate unique file names
+ * for the report file (report-0.xml, report-1.xml ...).
+ *
+ * This is useful for running within a orchestrated setup where each test runs in a separate process.
+ *
+ * Note: It is necessary to uninstall the app from prvious runs (clean up the report directory manually)
+ * before running the orchestrator or previous files will persist.
+ *
+ * @see https://developer.android.com/training/testing/junit-runner.html#using-android-test-orchestrator
+ */
 public class XmlRunListener extends InstrumentationRunListener {
     private static final String TAG = XmlRunListener.class.getSimpleName();
 
@@ -71,6 +85,7 @@ public class XmlRunListener extends InstrumentationRunListener {
             Log.d(TAG, "setInstrumentation: outputFile: " + outputFile);
             outputStream = new FileOutputStream(outputFile);
         } catch (FileNotFoundException e) {
+
             Log.e(TAG, "Unable to open report file: " + fileName, e);
             throw new RuntimeException("Unable to open report file: " + e.getMessage(), e);
         }
@@ -91,8 +106,19 @@ public class XmlRunListener extends InstrumentationRunListener {
      * @param instrumentation The current instrumentation with context
      * @return A file name to write the report to
      */
-    protected String getFileName(Instrumentation instrumentation) {
-        return "report.xml";
+    private String getFileName(Instrumentation instrumentation) {
+        return findFile("report", 0, ".xml", instrumentation);
+    }
+
+    private String findFile(String fileNamePrefix, int iterator, String fileNamePostfix, Instrumentation instr) {
+        String fileName = fileNamePrefix + "-" + iterator + fileNamePostfix;
+        File file = new File(instr.getTargetContext().getExternalFilesDir(null), fileName);
+
+        if (file.exists()) {
+            return findFile(fileNamePrefix, iterator + 1, fileNamePostfix, instr);
+        } else {
+            return file.getName();
+        }
     }
 
     @Override
