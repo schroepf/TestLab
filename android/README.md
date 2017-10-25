@@ -2,7 +2,10 @@
 
 ## Integrating android-xml-run-listener
 
+[ ![Download](https://api.bintray.com/packages/schroepf/schroepf/android-xml-run-listener/images/download.svg) ](https://bintray.com/schroepf/schroepf/android-xml-run-listener/_latestVersion)
+
 Add dependency to `build.gradle`:
+
 ```
 androidTestCompile 'de.schroepf:android-xml-run-listener:0.2.0'
 ```

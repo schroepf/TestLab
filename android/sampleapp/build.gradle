@@ -40,10 +40,10 @@ dependencies {
     testCompile 'junit:junit:4.12'
 
     // use git version
-    androidTestCompile project(':android-xml-run-listener')
+//    androidTestCompile project(':android-xml-run-listener')
 
     // use published version
-//    androidTestCompile 'de.schroepf:android-xml-run-listener:0.1.0'
+    androidTestCompile 'de.schroepf:android-xml-run-listener:0.2.0'
 
     // Android Testing Support Library's runner and rules
     androidTestCompile ("com.android.support.test.espresso:espresso-core:3.0.1") {
