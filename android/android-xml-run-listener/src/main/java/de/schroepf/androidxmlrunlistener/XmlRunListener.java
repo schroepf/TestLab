@@ -26,7 +26,7 @@ import java.util.Map;
  *
  * This is useful for running within a orchestrated setup where each test runs in a separate process.
  *
- * Note: It is necessary to uninstall the app from prvious runs (clean up the report directory manually)
+ * Note: It is necessary to uninstall the app from previous runs (clean up the report directory manually)
  * before running the orchestrator or previous files will persist.
  *
  * @see <a href="https://developer.android.com/training/testing/junit-runner.html#using-android-test-orchestrator">href="https://developer.android.com/training/testing/junit-runner.html#using-android-test-orchestrator</a>
@@ -192,7 +192,6 @@ public class XmlRunListener extends InstrumentationRunListener {
 
             switch (testEntry.getValue().getStatus()) {
                 case FAILURE:
-                case ASSUMPTION_FAILURE:
                     Failure failure = testEntry.getValue().getFailure();
                     xmlSerializer.startTag(NAMESPACE, TAG_FAILURE);
 
@@ -210,6 +209,8 @@ public class XmlRunListener extends InstrumentationRunListener {
                     xmlSerializer.endTag(NAMESPACE, TAG_FAILURE);
                     break;
 
+
+                case ASSUMPTION_FAILURE:
                 case IGNORED:
                     xmlSerializer.startTag(NAMESPACE, TAG_SKIPPED);
                     xmlSerializer.endTag(NAMESPACE, TAG_SKIPPED);
