@@ -7,7 +7,7 @@
 Add dependency to `build.gradle`:
 
 ```
-androidTestCompile 'de.schroepf:android-xml-run-listener:0.2.0'
+androidTestCompile 'de.schroepf:android-xml-run-listener:0.2.1'
 ```
 
 ## Activating the XmlRunListener
