@@ -106,7 +106,7 @@ public class XmlRunListener extends InstrumentationRunListener {
      * @param instrumentation The current instrumentation with context
      * @return A file name to write the report to
      */
-    private String getFileName(Instrumentation instrumentation) {
+    protected String getFileName(Instrumentation instrumentation) {
         return findFile("report", 0, ".xml", instrumentation);
     }
 
