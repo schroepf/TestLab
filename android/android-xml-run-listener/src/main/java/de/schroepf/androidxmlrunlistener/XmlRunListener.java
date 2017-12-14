@@ -75,18 +75,15 @@ public class XmlRunListener extends InstrumentationRunListener {
     public void setInstrumentation(Instrumentation instr) {
         super.setInstrumentation(instr);
 
-        final String fileName = getFileName(instr);
-
         try {
-            // Seems like we need to put this into the target application's context as for the instrumentation app's
-            // context we can never be sure if we have the correct permissions - and getFilesDir() seems to return null
-            File outputFile = new File(instr.getTargetContext().getExternalFilesDir(null), fileName);
+
+            File outputFile = getOutputFile(instr);
 
             Log.d(TAG, "setInstrumentation: outputFile: " + outputFile);
             outputStream = new FileOutputStream(outputFile);
         } catch (FileNotFoundException e) {
 
-            Log.e(TAG, "Unable to open report file: " + fileName, e);
+            Log.e(TAG, "Unable to open report file", e);
             throw new RuntimeException("Unable to open report file: " + e.getMessage(), e);
         }
 
@@ -101,10 +98,26 @@ public class XmlRunListener extends InstrumentationRunListener {
     }
 
     /**
-     * Get a file for the test report. Override this to create different file patterns.
+     * Get a {@link File} for the test report.
      *
-     * @param instrumentation The current instrumentation with context
-     * @return A file name to write the report to
+     * Override this to change the default file location.
+     *
+     * @param instrumentation the {@link Instrumentation} for this test run
+     * @return the file which should be used to store the XML report of the test run
+     */
+    protected File getOutputFile(Instrumentation instrumentation) {
+        // Seems like we need to put this into the target application's context as for the instrumentation app's
+        // context we can never be sure if we have the correct permissions - and getFilesDir() seems to return null
+        return new File(instrumentation.getTargetContext().getExternalFilesDir(null), getFileName(instrumentation));
+    }
+
+    /**
+     * Get a file name for the test report.
+     *
+     * Override this to create different file patterns.
+     *
+     * @param instrumentation the {@link Instrumentation} for this test run
+     * @return the file name which should be used to store the XML report of the test run
      */
     protected String getFileName(Instrumentation instrumentation) {
         return findFile("report", 0, ".xml", instrumentation);
