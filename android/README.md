@@ -1,8 +1,11 @@
 # android-xml-run-listener
 
-## Integrating android-xml-run-listener
+An [AndroidJUnitRunner](https://developer.android.com/reference/android/support/test/runner/AndroidJUnitRunner.html) [RunListener](http://junit.org/junit4/javadoc/latest/org/junit/runner/notification/RunListener.html) implementation which will create JUnit compatible XML report files containing the results of Andorid Instrumentation tests.
 
-[ ![Download](https://api.bintray.com/packages/schroepf/schroepf/android-xml-run-listener/images/download.svg) ](https://bintray.com/schroepf/schroepf/android-xml-run-listener/_latestVersion)
+[![Download](https://api.bintray.com/packages/schroepf/schroepf/android-xml-run-listener/images/download.svg) ](https://bintray.com/schroepf/schroepf/android-xml-run-listener/_latestVersion)
+[![Build Status](https://travis-ci.org/schroepf/TestLab.svg?branch=master)](https://travis-ci.org/schroepf/TestLab)
+
+## Integrating android-xml-run-listener
 
 Add dependency to `build.gradle`:
 
