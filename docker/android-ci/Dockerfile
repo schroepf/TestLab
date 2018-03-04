@@ -33,4 +33,4 @@ RUN echo y | sdkmanager "system-images;android-${ANDROID_COMPILE_SDK};google_api
 
 RUN avdmanager create avd -n pixel_xl -k "system-images;android-${ANDROID_COMPILE_SDK};google_apis_playstore;x86" --device "pixel_xl" --tag "google_apis_playstore"
 
-CMD /bin/bash
+CMD /bin/bash -l
