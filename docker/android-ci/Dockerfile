@@ -31,7 +31,7 @@ RUN echo y | sdkmanager "extras;google;m2repository"
 RUN echo y | sdkmanager "extras;m2repository;com;android;support;constraint;constraint-layout;1.0.2"
 RUN echo y | sdkmanager "system-images;android-27;google_apis_playstore;x86"
 
-RUN avdmanager create avd -n pixel_xl -k "system-images;android-27;google_apis_playstore;x86" --device "pixel_xxl" --tag "google_apis_playstore"
+RUN avdmanager create avd -n pixel_xl -k "system-images;android-27;google_apis_playstore;x86" --device "pixel_xl" --tag "google_apis_playstore"
 
 
 CMD /bin/bash
