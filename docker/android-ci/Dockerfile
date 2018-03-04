@@ -11,7 +11,7 @@ ARG ANDROID_BUILD_TOOLS="27.0.3"
 ARG ANDROID_SDK_DIR="${ANDROID_USER_HOME}/android-sdk"
 
 ENV ANDROID_HOME="${ANDROID_SDK_DIR}"
-ENV PATH="${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/tools/bin"
+ENV PATH="${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/tools/bin:${ANDROID_HOME}/platform-tools"
 
 RUN apt-get --quiet update --yes
 RUN apt-get --quiet install --yes wget tar unzip lib32stdc++6 lib32z1 libqt5widgets5
