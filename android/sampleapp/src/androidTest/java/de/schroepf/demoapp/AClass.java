@@ -7,6 +7,7 @@ import org.junit.runner.RunWith;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 /**
  * @author Tobias Schröpf on 23.08.16.
@@ -17,11 +18,11 @@ public class AClass {
     public void testHelloWorld() throws Exception {
         assertTrue("This is just a failing test", true);
         assertFalse("This is just a failing test", false);
-        assertTrue("This is just a failing test", false);
+        fail("This is just a failing test");
     }
 
     @Test
     public void testFailingTest() throws Exception {
-        assertTrue("This is just a failing test", false);
+        fail("This is just a failing test");
     }
 }
