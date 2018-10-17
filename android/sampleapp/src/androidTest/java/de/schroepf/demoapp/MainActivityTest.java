@@ -12,6 +12,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 import static org.junit.Assume.assumeThat;
 
 /**
@@ -33,6 +34,6 @@ public class MainActivityTest {
 
     @Test
     public void testFailingTest() throws Exception {
-        assertTrue("This is just a failing test", false);
+        fail("This is just a failing test");
     }
 }

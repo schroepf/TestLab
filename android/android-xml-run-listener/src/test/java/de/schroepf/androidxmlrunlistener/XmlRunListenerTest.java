@@ -5,7 +5,7 @@ import org.junit.runner.Description;
 import org.junit.runner.RunWith;
 import org.junit.runner.notification.Failure;
 import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.junit.MockitoJUnitRunner;
 import org.xmlpull.v1.XmlSerializer;
 
 /**
@@ -15,7 +15,7 @@ import org.xmlpull.v1.XmlSerializer;
 public class XmlRunListenerTest {
 
     @Mock
-    XmlSerializer mockXmlSerializer;
+    private XmlSerializer mockXmlSerializer;
 
     @Test
     public void testTestFailure() throws Exception {
