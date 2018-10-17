@@ -43,13 +43,13 @@ dependencies {
 //    androidTestImplementation project(':android-xml-run-listener')
 
     // use published version
-    androidTestImplementation 'de.schroepf:android-xml-run-listener:0.2.0'
+    androidTestImplementation "de.schroepf:android-xml-run-listener:$android_xml_run_listener_version"
 
     // Android Testing Support Library's runner and rules
     androidTestImplementation ("com.android.support.test.espresso:espresso-core:3.0.1") {
         exclude module: 'support-annotations'
     }
 
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestUtil 'com.android.support.test:orchestrator:1.0.2'
+    androidTestImplementation "com.android.support.test:runner:$test_runner_version"
+    androidTestUtil "com.android.support.test:orchestrator:$test_orchestrator_version"
 }

@@ -29,7 +29,7 @@ import java.util.Map;
  * Note: It is necessary to uninstall the app from previous runs (clean up the report directory manually)
  * before running the orchestrator or previous files will persist.
  *
- * @see <a href="https://developer.android.com/training/testing/junit-runner.html#using-android-test-orchestrator">href="https://developer.android.com/training/testing/junit-runner.html#using-android-test-orchestrator</a>
+ * @see <a href="https://developer.android.com/training/testing/junit-runner.html#using-android-test-orchestrator">https://developer.android.com/training/testing/junit-runner.html#using-android-test-orchestrator</a>
  */
 public class XmlRunListener extends InstrumentationRunListener {
     private static final String TAG = XmlRunListener.class.getSimpleName();
