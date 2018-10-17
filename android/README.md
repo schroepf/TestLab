@@ -10,7 +10,7 @@ An [AndroidJUnitRunner](https://developer.android.com/reference/android/support/
 Add dependency to `build.gradle`:
 
 ```
-androidTestCompile 'de.schroepf:android-xml-run-listener:0.2.2'
+androidTestCompile 'de.schroepf:android-xml-run-listener:0.3.0'
 ```
 
 ## Activating the XmlRunListener

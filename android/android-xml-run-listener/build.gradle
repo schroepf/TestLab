@@ -4,7 +4,7 @@ apply plugin: 'com.github.dcendents.android-maven'
 
 // This is the library version used when deploying the artifact
 group = "de.schroepf"
-version = "0.2.2"
+version = "0.3.0"
 
 def siteUrl = 'https://github.com/schroepf/TestLab/tree/master/android/android-xml-run-listener'
 def gitUrl = 'https://github.com/schroepf/TestLab'
@@ -76,13 +76,20 @@ task sourcesJar(type: Jar) {
 
 task javadoc(type: Javadoc) {
     source = android.sourceSets.main.java.srcDirs
-    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+    classpath += project.files(android.bootClasspath.join(File.pathSeparator))
+
+    android.libraryVariants.all { variant ->
+        if (variant.name == 'release') {
+            owner.classpath += variant.javaCompile.classpath
+        }
+    }
 }
 
 task javadocJar(type: Jar, dependsOn: javadoc) {
     classifier = 'javadoc'
     from javadoc.destinationDir
 }
+
 artifacts {
     archives javadocJar
     archives sourcesJar
@@ -108,7 +115,7 @@ bintray {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation ("com.android.support.test:runner:1.0.1") {
+    implementation ("com.android.support.test:runner:$test_runner_version") {
         exclude module: 'support-annotations'
     }
 
