@@ -98,7 +98,12 @@ artifacts {
 // https://github.com/bintray/gradle-bintray-plugin
 bintray {
     Properties properties = new Properties()
-    properties.load(project.rootProject.file('local.properties').newDataInputStream())
+//    properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+    def propertiesFile = project.rootProject.file('local.properties')
+    if (propertiesFile.exists()) {
+        propertiesFile.withInputStream { properties.load(it) }
+    }
 
     user = properties.getProperty("bintray.user")
     key = properties.getProperty("bintray.apikey")
