@@ -1,0 +1,30 @@
+image: schroepf/android-ci:latest
+
+variables:
+  PROJECT_ROOT: "android"
+
+stages:
+  - ci
+  - test
+
+continuousIntegration:
+  stage: ci
+  script:
+    - ${PROJECT_ROOT}/gradlew -p ${PROJECT_ROOT} assembleDebug testDebug
+  artifacts:
+    paths:
+    - ${PROJECT_ROOT}/app/build/reports/
+    - ${PROJECT_ROOT}/app/build/reports/tests/
+    - ${PROJECT_ROOT}/app/build/outputs/apk/
+    reports:
+      junit: */build/test-results/testDebugUnitTest/TEST-*.xml
+
+instrumentationTests:
+  stage: test
+  script:
+    - emulator64-arm -avd pixel_xl_arm -no-boot-anim -no-window -no-audio &
+    - adb wait-for-device shell 'while [[ -z $(getprop sys.boot_completed) ]]; do sleep 1; done'
+    - ${PROJECT_ROOT}/gradlew -p ${PROJECT_ROOT} sampleapp:connectedAndroidTest
+  artifacts:
+    reports:
+      junit: sampleapp/build/outputs/androidTest-results/connected/TEST-*.xml
