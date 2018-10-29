@@ -1,9 +1,14 @@
-package de.schroepf.demoapp.screenshot;
+package de.schroepf.androidtestrules;
 
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.media.ExifInterface;
 import android.os.Build;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.test.InstrumentationRegistry;
+import android.support.test.runner.screenshot.ScreenCapture;
+import android.support.test.runner.screenshot.ScreenCaptureProcessor;
 import android.util.Log;
 
 import java.io.File;
@@ -22,7 +27,13 @@ import androidx.test.runner.screenshot.ScreenCapture;
 import androidx.test.runner.screenshot.ScreenCaptureProcessor;
 
 public class ScreenshotProcessor implements ScreenCaptureProcessor {
-    private static final String TAG = "ScreenshotProcessor";
+
+    @Nullable
+    private final String subdirectory;
+
+    ScreenshotProcessor(@Nullable String subdirectory) {
+        this.subdirectory = subdirectory;
+    }
 
     @Override
     public String process(ScreenCapture capture) throws IOException {
@@ -30,11 +41,11 @@ public class ScreenshotProcessor implements ScreenCaptureProcessor {
             return null;
         }
 
-        return save(InstrumentationRegistry.getInstrumentation().getTargetContext(), capture.getName(), "test", capture.getBitmap(), capture.getFormat());
+        return save(InstrumentationRegistry.getInstrumentation().getTargetContext(), capture.getName(), subdirectory, capture.getBitmap(), capture.getFormat());
     }
 
-    private String save(Context context, String name, String subdirectory, Bitmap bitmap, Bitmap.CompressFormat compressFormat) throws IOException {
-        File dir = new File(context.getExternalFilesDir(null), subdirectory);
+    private String save(Context context, String name, @Nullable String subdirectory, Bitmap bitmap, Bitmap.CompressFormat compressFormat) throws IOException {
+        File dir = subdirectory != null ? new File(context.getExternalFilesDir(null), subdirectory) : context.getExternalFilesDir(null);
 
         if (!dir.exists() && !dir.mkdirs()) {
             throw new IOException("Could not create screenshot directory: " + dir.getPath());
@@ -42,22 +53,10 @@ public class ScreenshotProcessor implements ScreenCaptureProcessor {
 
         File imageFile = new File(dir, name + extensionForFormat(compressFormat));
 
-        OutputStream out = null;
-
-        try {
-            out = new FileOutputStream(imageFile);
+        try (OutputStream out = new FileOutputStream(imageFile)) {
             bitmap.compress(compressFormat, 100, out);
             out.flush();
         } finally {
-            try {
-                if (out != null) {
-                    out.close();
-                }
-            } catch (Exception e) {
-                Log.e(TAG, "Unable to save screenshot", e);
-            }
-
-            Log.d(TAG, "Screenshot saved as: " + imageFile.getAbsolutePath());
             if (compressFormat == Bitmap.CompressFormat.JPEG) {
                 // ExifInterface only supports specific formats, but
                 addMetadata(imageFile);
@@ -67,7 +66,7 @@ public class ScreenshotProcessor implements ScreenCaptureProcessor {
         return imageFile.getName();
     }
 
-    @Nullable
+    @NonNull
     private String extensionForFormat(Bitmap.CompressFormat format) {
         switch (format) {
             case JPEG:
@@ -80,10 +79,11 @@ public class ScreenshotProcessor implements ScreenCaptureProcessor {
                 return ".webp";
         }
 
-        return null;
+        // should never happen
+        return "";
     }
 
-    private void addMetadata(File imageFile) throws IOException {
+    private void addMetadata(@Nonnull File imageFile) throws IOException {
         ExifInterface exif = new ExifInterface(imageFile.getAbsolutePath());
         exif.setAttribute(ExifInterface.TAG_MAKE, Build.MANUFACTURER);
         exif.setAttribute(ExifInterface.TAG_MODEL, Build.MODEL);
