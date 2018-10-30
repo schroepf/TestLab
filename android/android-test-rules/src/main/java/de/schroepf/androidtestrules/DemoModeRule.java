@@ -1,10 +1,10 @@
 package de.schroepf.androidtestrules;
 
+import android.Manifest;
 import android.app.UiAutomation;
 import android.content.Context;
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.test.InstrumentationRegistry;
+import android.os.Build;
 
 import org.junit.rules.TestRule;
 import org.junit.runner.Description;
@@ -15,6 +15,9 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
+import androidx.annotation.NonNull;
+import androidx.test.core.app.ApplicationProvider;
+import androidx.test.platform.app.InstrumentationRegistry;
 import de.schroepf.androidtestrules.demo.BarsStyle;
 import de.schroepf.androidtestrules.demo.BluetoothState;
 import de.schroepf.androidtestrules.demo.MobileDataType;
@@ -45,11 +48,15 @@ public class DemoModeRule implements TestRule {
     }
 
     private void enableDemoMode() {
-        Context context = InstrumentationRegistry.getTargetContext();
+        Context context = ApplicationProvider.getApplicationContext();
         UiAutomation automation = InstrumentationRegistry.getInstrumentation().getUiAutomation();
 
         // make sure permission is granted
-        ScreenshotUtils.executeShellCommand(automation, "pm grant " + context.getPackageName() + " android.permission.DUMP");
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            automation.grantRuntimePermission(context.getPackageName(), Manifest.permission.DUMP);
+        } else {
+            ScreenshotUtils.executeShellCommand(automation, "pm grant " + context.getPackageName() + " " + Manifest.permission.DUMP);
+        }
 
         // enable demo mode
         ScreenshotUtils.executeShellCommand(automation, "settings put global sysui_demo_allowed 1");
@@ -63,7 +70,7 @@ public class DemoModeRule implements TestRule {
     }
 
     private void disableDemoMode() {
-        Context context = InstrumentationRegistry.getTargetContext();
+        Context context = ApplicationProvider.getApplicationContext();
         UiAutomation automation = InstrumentationRegistry.getInstrumentation().getUiAutomation();
 
         // exit demo mode

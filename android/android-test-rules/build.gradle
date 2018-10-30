@@ -9,7 +9,7 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
@@ -22,7 +22,10 @@ android {
 
 dependencies {
     implementation "junit:junit:$junit_version"
-    implementation "com.android.support.test:rules:$test_rules_version"
-    implementation "com.android.support.test:runner:$test_runner_version"
-    implementation "com.android.support.test.espresso:espresso-core:$espresso_version"
+    implementation "androidx.test:core:$androidx_test_core_version"
+    implementation "androidx.test:rules:$androidx_test_rules_version"
+    implementation "androidx.test:runner:$androidx_test_runner_version"
+    implementation "androidx.test.espresso:espresso-core:$androidx_espresso_version"
+
+    implementation "com.android.support.test.uiautomator:uiautomator-v18:2.1.3"
 }

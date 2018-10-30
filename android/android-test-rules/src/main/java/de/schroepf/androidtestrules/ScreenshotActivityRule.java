@@ -1,9 +1,6 @@
 package de.schroepf.androidtestrules;
 
 import android.app.Activity;
-import android.support.annotation.Nullable;
-import android.support.test.rule.ActivityTestRule;
-import android.support.test.runner.screenshot.ScreenCaptureProcessor;
 
 import org.junit.runner.Description;
 import org.junit.runners.model.Statement;
@@ -11,8 +8,14 @@ import org.junit.runners.model.Statement;
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.concurrent.TimeoutException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import androidx.annotation.Nullable;
+import androidx.test.platform.app.InstrumentationRegistry;
+import androidx.test.rule.ActivityTestRule;
+import androidx.test.runner.screenshot.ScreenCaptureProcessor;
 
 public class ScreenshotActivityRule<T extends Activity> extends ActivityTestRule<T> {
 
@@ -39,24 +42,30 @@ public class ScreenshotActivityRule<T extends Activity> extends ActivityTestRule
         super.finishActivity();
     }
 
-    private void shoot(@Nullable Description description) throws IOException {
+    private void shoot(@Nullable final Description description) throws IOException {
         if (description == null) {
             return;
         }
 
-        Screenshot screenshot = description.getAnnotation(Screenshot.class);
+        final Screenshot screenshot = description.getAnnotation(Screenshot.class);
 
         if (screenshot == null) {
             return;
         }
 
         String subdirectory = !screenshot.subdirectory().isEmpty() ? screenshot.subdirectory() : description.getTestClass().getSimpleName();
-        Set<ScreenCaptureProcessor> processorSet = new HashSet<>();
+        final Set<ScreenCaptureProcessor> processorSet = new HashSet<>();
         processorSet.add(new ScreenshotProcessor(subdirectory));
 
-        android.support.test.runner.screenshot.Screenshot.capture()
-                .setName(screenshot.name().isEmpty() ? description.getMethodName() : screenshot.name())
-                .setFormat(screenshot.format())
-                .process(processorSet);
+        try {
+            InstrumentationRegistry.getInstrumentation().getUiAutomation().waitForIdle(100, 3000);
+        } catch (TimeoutException ignore) {
+
+        } finally {
+            androidx.test.runner.screenshot.Screenshot.capture()
+                    .setName(screenshot.name().isEmpty() ? description.getMethodName() : screenshot.name())
+                    .setFormat(screenshot.format())
+                    .process(processorSet);
+        }
     }
 }

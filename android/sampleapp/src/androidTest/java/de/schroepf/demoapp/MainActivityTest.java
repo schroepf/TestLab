@@ -1,23 +1,23 @@
 package de.schroepf.demoapp;
 
-import android.support.test.rule.ActivityTestRule;
-import android.support.test.runner.AndroidJUnit4;
-
 import org.junit.ClassRule;
 import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import androidx.test.rule.ActivityTestRule;
+import androidx.test.runner.AndroidJUnit4;
 import de.schroepf.androidtestrules.DemoModeRule;
 import de.schroepf.androidtestrules.NoAnimationsRule;
 import de.schroepf.androidtestrules.Screenshot;
 import de.schroepf.androidtestrules.ScreenshotActivityRule;
+import de.schroepf.androidtestrules.demo.BluetoothState;
 
-import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.assertion.ViewAssertions.matches;
-import static android.support.test.espresso.matcher.ViewMatchers.withId;
-import static android.support.test.espresso.matcher.ViewMatchers.withText;
+import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.matcher.ViewMatchers.withId;
+import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.fail;
 import static org.junit.Assume.assumeThat;
@@ -33,11 +33,11 @@ public class MainActivityTest {
 
     @ClassRule
     public static DemoModeRule demoModeRule = new DemoModeRule.Builder()
-            .clock("0123")
-            .batteryLevel(12)
+            .clock("1201")
+            .batteryLevel(80)
             .batteryPlugged(false)
             .notifications(false)
-            .airplane(false)
+            .bluetooth(BluetoothState.CONNECTED)
             .build();
 
     @Rule
@@ -62,5 +62,6 @@ public class MainActivityTest {
     @Screenshot
     @Test
     public void screenshotTest() {
+
     }
 }

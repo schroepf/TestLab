@@ -21,12 +21,12 @@ import androidx.test.internal.runner.listener.InstrumentationRunListener;
 /**
  * An InstrumentationRunListener which writes the test results to JUnit style XML files to the
  * {@code /storage/emulated/0/Android/data/<package-name>/files/} directory on the device.
- *
+ * <p>
  * This listener will not override existing XML reports and instead will generate unique file names
  * for the report file (report-0.xml, report-1.xml ...).
- *
+ * <p>
  * This is useful for running within a orchestrated setup where each test runs in a separate process.
- *
+ * <p>
  * Note: It is necessary to uninstall the app from previous runs (clean up the report directory manually)
  * before running the orchestrator or previous files will persist.
  *
@@ -100,7 +100,7 @@ public class XmlRunListener extends InstrumentationRunListener {
 
     /**
      * Get a {@link File} for the test report.
-     *
+     * <p>
      * Override this to change the default file location.
      *
      * @param instrumentation the {@link Instrumentation} for this test run
@@ -114,7 +114,7 @@ public class XmlRunListener extends InstrumentationRunListener {
 
     /**
      * Get a file name for the test report.
-     *
+     * <p>
      * Override this to create different file patterns.
      *
      * @param instrumentation the {@link Instrumentation} for this test run
@@ -202,7 +202,7 @@ public class XmlRunListener extends InstrumentationRunListener {
             xmlSerializer.attribute(NAMESPACE, ATTRIBUTE_NAME, testEntry.getKey().getDisplayName());
             xmlSerializer.attribute(NAMESPACE, ATTRIBUTE_CLASS, testEntry.getKey().getClassName());
             long elapsedTimeMs = testEntry.getValue().getElapsedTime();
-            xmlSerializer.attribute(NAMESPACE, ATTRIBUTE_TIME, Double.toString((double)elapsedTimeMs / 1000.f));
+            xmlSerializer.attribute(NAMESPACE, ATTRIBUTE_TIME, Double.toString((double) elapsedTimeMs / 1000.f));
 
             switch (testEntry.getValue().getStatus()) {
                 case FAILURE:

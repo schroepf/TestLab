@@ -15,11 +15,12 @@ buildscript {
     }
 
     ext {
-        test_runner_version = '1.1.0'
-        test_rules_version = '1.0.2'
-        test_orchestrator_version = '1.0.2'
+        androidx_test_core_version = '1.0.0'
+        androidx_test_runner_version = '1.1.0'
+        androidx_test_rules_version = '1.1.0'
+        androidx_test_orchestrator_version = '1.1.0'
         android_xml_run_listener_version = '0.3.0'
-        espresso_version = '3.0.2'
+        androidx_espresso_version = '3.1.0'
         junit_version = '4.12'
     }
 }

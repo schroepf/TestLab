@@ -1,10 +1,11 @@
 package de.schroepf.androidtestrules;
 
-import android.support.test.InstrumentationRegistry;
-
 import org.junit.rules.TestRule;
 import org.junit.runner.Description;
 import org.junit.runners.model.Statement;
+
+import androidx.test.platform.app.InstrumentationRegistry;
+
 
 public class NoAnimationsRule implements TestRule {
     @Override

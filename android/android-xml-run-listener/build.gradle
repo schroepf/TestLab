@@ -119,7 +119,7 @@ bintray {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation("androidx.test:runner:$test_runner_version") {
+    implementation("androidx.test:runner:$androidx_test_runner_version") {
         exclude module: 'support-annotations'
     }
 
