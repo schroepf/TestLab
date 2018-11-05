@@ -5,6 +5,7 @@ variables:
 
 stages:
   - ci
+  - test
 
 continuousIntegration:
   stage: ci
