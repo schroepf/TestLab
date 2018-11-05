@@ -13,10 +13,15 @@ continuousIntegration:
     - ${PROJECT_ROOT}/gradlew -p ${PROJECT_ROOT} assembleDebug testDebug
   artifacts:
     paths:
-    - ${PROJECT_ROOT}/sampleapp/build/reports/
+    - ${PROJECT_ROOT}/android-test-rules/build/reports/lint-results.*
+    - ${PROJECT_ROOT}/android-test-rules/build/reports/tests/
+    - ${PROJECT_ROOT}/android-xml-run-listener/build/reports/lint-results.*
+    - ${PROJECT_ROOT}/android-xml-run-listener/build/reports/tests/
+    - ${PROJECT_ROOT}/sampleapp/build/reports/lint-results.*
     - ${PROJECT_ROOT}/sampleapp/build/reports/tests/
     - ${PROJECT_ROOT}/sampleapp/build/outputs/apk/
     reports:
+      junit: android/android-test-rules/build/test-results/testDebugUnitTest/TEST-*.xml
       junit: android/android-xml-run-listener/build/test-results/testDebugUnitTest/TEST-*.xml
       junit: android/sampleapp/build/test-results/testDebugUnitTest/TEST-*.xml
 
