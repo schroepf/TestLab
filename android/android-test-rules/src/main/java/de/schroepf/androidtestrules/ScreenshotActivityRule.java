@@ -1,6 +1,7 @@
 package de.schroepf.androidtestrules;
 
 import android.app.Activity;
+import android.os.Build;
 
 import org.junit.runner.Description;
 import org.junit.runners.model.Statement;
@@ -37,7 +38,11 @@ public class ScreenshotActivityRule<T extends Activity> extends ActivityTestRule
         try {
             shoot(currentDescription);
         } catch (IOException e) {
-            Logger.getGlobal().log(Level.WARNING, "Taking screenshot failed");
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                Logger.getGlobal().log(Level.WARNING, "Taking screenshot failed");
+            } else {
+                Logger.getLogger(Logger.GLOBAL_LOGGER_NAME).log(Level.WARNING, "Taking screenshot failed");
+            }
         }
         super.finishActivity();
     }
