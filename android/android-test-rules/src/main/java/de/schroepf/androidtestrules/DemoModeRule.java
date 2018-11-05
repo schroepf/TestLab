@@ -55,11 +55,11 @@ public class DemoModeRule implements TestRule {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             automation.grantRuntimePermission(context.getPackageName(), Manifest.permission.DUMP);
         } else {
-            ScreenshotUtils.executeShellCommand(automation, "pm grant " + context.getPackageName() + " " + Manifest.permission.DUMP);
+            InstrumentationTestingUtils.executeShellCommand(automation, "pm grant " + context.getPackageName() + " " + Manifest.permission.DUMP);
         }
-
+        
         // enable demo mode
-        ScreenshotUtils.executeShellCommand(automation, "settings put global sysui_demo_allowed 1");
+        InstrumentationTestingUtils.executeShellCommand(automation, "settings put global sysui_demo_allowed 1");
 
         // enter demo mode
         context.sendBroadcast(DemoUtils.createEnterDemoModeIntent());
@@ -77,7 +77,7 @@ public class DemoModeRule implements TestRule {
         context.sendBroadcast(DemoUtils.createExitDemoModeIntent());
 
         // disable demo mode
-        ScreenshotUtils.executeShellCommand(automation, "settings put global sysui_demo_allowed 0");
+        InstrumentationTestingUtils.executeShellCommand(automation, "settings put global sysui_demo_allowed 0");
     }
 
 

@@ -42,12 +42,12 @@ adb shell am instrument -w -r -e listener de.schroepf.androidxmlrunlistener.XmlR
 
 The `report.xml` files will be stored in the tests application's documents folder, e.g.:
 ```
-adb shell cat /storage/emulated/0/Android/data/de.schroepf.demoapp/files/report*.xml
+adb shell cat /sdcard/Android/data/de.schroepf.demoapp/files/report*.xml
 ```
 
 to copy them from the device to the computer:
 ```
-adb pull /storage/emulated/0/Android/data/de.schroepf.demoapp/files
+adb pull /sdcard/Android/data/de.schroepf.demoapp/files
 ```
 
 ## IMPORTANT: Remove reports from the device
@@ -56,5 +56,5 @@ Bofore starting the next test run make sure to remove the report XML files from 
 uninstalling the app before running the test again or by executing:
 
 ```
-adb shell rm /storage/emulated/0/Android/data/de.schroepf.demoapp/files/report*.xml
+adb shell rm /sdcard/Android/data/de.schroepf.demoapp/files/report*.xml
 ```
