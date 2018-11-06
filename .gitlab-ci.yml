@@ -28,7 +28,7 @@ continuousIntegration:
 instrumentationTests:
   stage: test
   script:
-    - emulator64-arm -avd pixel_xl_x86 -no-boot-anim -no-window -no-audio &
+    - emulator -avd pixel_xl_x86 -no-boot-anim -no-window -no-audio &
     - adb wait-for-device shell 'while [[ -z $(getprop sys.boot_completed) ]]; do sleep 1; done'
     - ${PROJECT_ROOT}/gradlew -p ${PROJECT_ROOT} sampleapp:connectedAndroidTest
   artifacts:
