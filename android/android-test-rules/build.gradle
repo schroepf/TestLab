@@ -1,0 +1,31 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 28
+
+    defaultConfig {
+        minSdkVersion 18
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation "junit:junit:$junit_version"
+    implementation "androidx.test:core:$androidx_test_core_version"
+    implementation "androidx.test:rules:$androidx_test_rules_version"
+    implementation "androidx.test:runner:$androidx_test_runner_version"
+    implementation "androidx.test.espresso:espresso-core:$androidx_espresso_version"
+
+    implementation "com.android.support.test.uiautomator:uiautomator-v18:2.1.3"
+}

@@ -1,1 +1,3 @@
-A docker image which can be used by CI systems to build Android projects.
+Home of some helpers for some testing tools:
+
+- [android](android/README.md)

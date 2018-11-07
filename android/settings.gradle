@@ -1,1 +1,1 @@
-include ':sampleapp', ':android-xml-run-listener'
+include ':sampleapp', ':android-xml-run-listener', ':android-test-rules'
