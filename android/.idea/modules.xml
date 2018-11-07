@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/android.iml" filepath="$PROJECT_DIR$/android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/android-test-rules/android-test-rules.iml" filepath="$PROJECT_DIR$/android-test-rules/android-test-rules.iml" />
+      <module fileurl="file://$PROJECT_DIR$/android-xml-run-listener/android-xml-run-listener.iml" filepath="$PROJECT_DIR$/android-xml-run-listener/android-xml-run-listener.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sampleapp/sampleapp.iml" filepath="$PROJECT_DIR$/sampleapp/sampleapp.iml" />
+    </modules>
+  </component>
+</project>
