@@ -2,7 +2,6 @@ package de.schroepf.androidxmlrunlistener;
 
 import android.app.Instrumentation;
 import android.os.Build;
-import android.support.test.internal.runner.listener.InstrumentationRunListener;
 import android.util.Log;
 import android.util.Xml;
 
@@ -16,6 +15,8 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Map;
+
+import androidx.test.internal.runner.listener.InstrumentationRunListener;
 
 /**
  * An InstrumentationRunListener which writes the test results to JUnit style XML files to the
