@@ -2,8 +2,7 @@ package de.schroepf.androidtestrules;
 
 import android.content.Intent;
 
-import javax.annotation.Nullable;
-
+import androidx.annotation.Nullable;
 import de.schroepf.androidtestrules.demo.BarsStyle;
 import de.schroepf.androidtestrules.demo.BluetoothState;
 import de.schroepf.androidtestrules.demo.MobileDataType;

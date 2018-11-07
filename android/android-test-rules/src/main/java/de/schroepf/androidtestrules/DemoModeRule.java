@@ -13,9 +13,8 @@ import org.junit.runners.model.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.Nullable;
-
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.test.core.app.ApplicationProvider;
 import androidx.test.platform.app.InstrumentationRegistry;
 import de.schroepf.androidtestrules.demo.BarsStyle;
@@ -57,7 +56,7 @@ public class DemoModeRule implements TestRule {
         } else {
             InstrumentationTestingUtils.executeShellCommand(automation, "pm grant " + context.getPackageName() + " " + Manifest.permission.DUMP);
         }
-        
+
         // enable demo mode
         InstrumentationTestingUtils.executeShellCommand(automation, "settings put global sysui_demo_allowed 1");
 
