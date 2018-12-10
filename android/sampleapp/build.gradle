@@ -33,25 +33,28 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'androidx.appcompat:appcompat:1.0.1'
+    implementation 'androidx.appcompat:appcompat:1.0.2'
     implementation 'com.google.android.material:material:1.1.0-alpha01'
-    implementation 'androidx.annotation:annotation:1.0.0'
+    implementation 'androidx.annotation:annotation:1.0.1'
 
     testImplementation "junit:junit:$junit_version"
 
     // use git version
-    androidTestImplementation project(':android-test-rules')
-    androidTestImplementation project(':android-xml-run-listener')
+//    androidTestImplementation project(':android-xml-run-listener')
+//    androidTestImplementation project(':android-test-rules')
 
     // use published version
-//    androidTestImplementation "de.schroepf:android-xml-run-listener:$android_xml_run_listener_version"
+    androidTestImplementation "de.schroepf:android-xml-run-listener:$android_xml_run_listener_version"
+    androidTestImplementation "de.schroepf:android-test-rules:$android_test_rules_version"
 
     // Android Testing Support Library's runner and rules
     androidTestImplementation("androidx.test.espresso:espresso-core:$androidx_espresso_version") {
         exclude module: 'support-annotations'
     }
 
+    androidTestImplementation "androidx.test:core:$androidx_test_core_version"
     androidTestImplementation "androidx.test:runner:$androidx_test_runner_version"
     androidTestImplementation "androidx.test:rules:$androidx_test_rules_version"
+    androidTestImplementation "androidx.test.ext:junit:$androidx_junit_version"
     androidTestUtil "androidx.test:orchestrator:$androidx_test_orchestrator_version"
 }

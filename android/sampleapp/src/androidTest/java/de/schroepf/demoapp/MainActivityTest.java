@@ -1,14 +1,16 @@
 package de.schroepf.demoapp;
 
+import android.graphics.Bitmap;
+
 import org.junit.ClassRule;
 import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.rule.ActivityTestRule;
-import androidx.test.runner.AndroidJUnit4;
 import de.schroepf.androidtestrules.DemoModeRule;
 import de.schroepf.androidtestrules.NoAnimationsRule;
 import de.schroepf.androidtestrules.Screenshot;
@@ -74,7 +76,7 @@ public class MainActivityTest {
         onView(withId(R.id.fab)).perform(click());
     }
 
-    @Screenshot
+    @Screenshot(format = Bitmap.CompressFormat.JPEG)
     @Test
     public void optionsMenuTest() {
         openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getInstrumentation().getTargetContext());

@@ -2,7 +2,6 @@ package de.schroepf.androidtestrules;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.media.ExifInterface;
 import android.os.Build;
 
 import java.io.File;
@@ -15,7 +14,8 @@ import java.util.Locale;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.test.InstrumentationRegistry;
+import androidx.exifinterface.media.ExifInterface;
+import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.runner.screenshot.ScreenCapture;
 import androidx.test.runner.screenshot.ScreenCaptureProcessor;
 
@@ -37,8 +37,13 @@ public class ScreenshotProcessor implements ScreenCaptureProcessor {
         return save(InstrumentationRegistry.getInstrumentation().getTargetContext(), capture.getName(), subdirectory, capture.getBitmap(), capture.getFormat());
     }
 
+    @Nullable
     private String save(Context context, String name, @Nullable String subdirectory, Bitmap bitmap, Bitmap.CompressFormat compressFormat) throws IOException {
         File dir = subdirectory != null ? new File(context.getExternalFilesDir(null), subdirectory) : context.getExternalFilesDir(null);
+
+        if (dir == null) {
+            return null;
+        }
 
         if (!dir.exists() && !dir.mkdirs()) {
             throw new IOException("Could not create screenshot directory: " + dir.getPath());
