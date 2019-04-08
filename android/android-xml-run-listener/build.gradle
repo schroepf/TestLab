@@ -9,7 +9,7 @@ version = "0.4.0"
 def siteUrl = 'https://github.com/schroepf/TestLab/tree/master/android/android-xml-run-listener'
 def gitUrl = 'https://github.com/schroepf/TestLab'
 def artifactGroup = 'de.schroepf'
-def artifactIdentifier = 'android-xml-run-listener-legacy'
+def artifactIdentifier = 'android-xml-run-listener'
 def artifactName = "$artifactGroup:$artifactIdentifier"
 
 // This is the library version used when deploying the artifact
@@ -118,7 +118,7 @@ bintray {
     configurations = ['archives']
     pkg {
         repo = 'schroepf'
-        name = artifactName
+        name = artifactIdentifier
         websiteUrl = siteUrl
         vcsUrl = gitUrl
         publish = true

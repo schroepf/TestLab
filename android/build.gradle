@@ -19,7 +19,7 @@ buildscript {
         androidx_test_runner_version = '1.1.0'
         androidx_test_rules_version = '1.1.0'
         androidx_test_orchestrator_version = '1.1.0'
-        android_xml_run_listener_version = '0.3.0'
+        android_xml_run_listener_version = '0.4.0'
         androidx_espresso_version = '3.1.0'
         junit_version = '4.12'
     }

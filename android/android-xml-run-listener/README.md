@@ -9,9 +9,18 @@ An [AndroidJUnitRunner](https://developer.android.com/reference/android/support/
 
 Add dependency to `build.gradle`:
 
+### AndroidX compatible
+
 ```
-androidTestCompile 'de.schroepf:android-xml-run-listener:0.3.1'
+androidTestCompile 'de.schroepf:android-xml-run-listener:0.4.0'
 ```
+
+### Legacy build (pre AndroidX)
+
+```
+androidTestCompile 'de.schroepf:android-xml-run-listener-legacy:0.4.0'
+```
+
 
 ## Activating the XmlRunListener
 

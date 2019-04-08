@@ -41,10 +41,10 @@ dependencies {
 
     // use git version
     androidTestImplementation project(':android-test-rules')
-    androidTestImplementation project(':android-xml-run-listener')
+//    androidTestImplementation project(':android-xml-run-listener')
 
     // use published version
-//    androidTestImplementation "de.schroepf:legacy-android-xml-run-listener:$android_xml_run_listener_version"
+    androidTestImplementation "de.schroepf:android-xml-run-listener:$android_xml_run_listener_version"
 
     // Android Testing Support Library's runner and rules
     androidTestImplementation("androidx.test.espresso:espresso-core:$androidx_espresso_version") {
