@@ -17,7 +17,7 @@ buildscript {
     ext {
         test_runner_version = '1.0.2'
         test_orchestrator_version = '1.0.2'
-        android_xml_run_listener_version = '0.3.0'
+        android_xml_run_listener_version = '0.4.0'
     }
 }
 

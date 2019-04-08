@@ -4,7 +4,7 @@ apply plugin: 'com.github.dcendents.android-maven'
 
 // This is the library version used when deploying the artifact
 group = "de.schroepf"
-version = "0.3.0"
+version = "0.4.0"
 
 def siteUrl = 'https://github.com/schroepf/TestLab/tree/master/android/android-xml-run-listener'
 def gitUrl = 'https://github.com/schroepf/TestLab'
@@ -41,8 +41,8 @@ install {
                 packaging 'aar'
 
                 // Add your description here
-                name 'de.schroepf:android-xml-run-listener'
-                description = 'JUnit XML RunListener for android instrumentation tests'
+                name 'de.schroepf:android-xml-run-listener-legacy'
+                description = 'JUnit XML RunListener for android instrumentation tests (for non AndroidX projects)'
                 url siteUrl
 
                 // Set your license
