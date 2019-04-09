@@ -1,4 +1,16 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.jfrog.bintray'
+apply plugin: 'com.github.dcendents.android-maven'
+
+def siteUrl = 'https://github.com/schroepf/TestLab/tree/master/android/android-test-rules'
+def gitUrl = 'https://github.com/schroepf/TestLab'
+def artifactGroup = 'de.schroepf'
+def artifactIdentifier = 'android-test-rules'
+def artifactName = "$artifactGroup:$artifactIdentifier"
+
+// This is the library version used when deploying the artifact
+group = artifactGroup
+version = "0.1.0"
 
 android {
     compileSdkVersion 28
@@ -7,7 +19,7 @@ android {
         minSdkVersion 18
         targetSdkVersion 28
         versionCode 1
-        versionName "1.0"
+        versionName version
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -17,6 +29,93 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+}
+
+
+install {
+    repositories.mavenInstaller {
+        // This generates POM.xml with proper parameters
+        pom {
+            project {
+                packaging 'aar'
+
+                // Add your description here
+                name artifactName
+                groupId artifactGroup
+                artifactId artifactIdentifier
+                description = 'JUnit rules for android instrumentation tests'
+                url siteUrl
+
+                // Set your license
+                licenses {
+                    license {
+                        name 'The Unlicense'
+                        url 'http://unlicense.org/'
+                    }
+                }
+                developers {
+                    developer {
+                        id 'schroepf'
+                        name 'Tobias Schröpf'
+                        email 'schroepf@gmail.com'
+                    }
+                }
+                scm {
+                    connection gitUrl
+                    developerConnection gitUrl
+                    url siteUrl
+                }
+            }
+        }
+    }
+}
+
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+
+task javadoc(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.bootClasspath.join(File.pathSeparator))
+
+    android.libraryVariants.all { variant ->
+        if (variant.name == 'release') {
+            owner.classpath += variant.javaCompileProvider.get().classpath
+        }
+    }
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives javadocJar
+    archives sourcesJar
+}
+
+// https://github.com/bintray/gradle-bintray-plugin
+bintray {
+    Properties properties = new Properties()
+
+    def propertiesFile = project.rootProject.file('local.properties')
+    if (propertiesFile.exists()) {
+        propertiesFile.withInputStream { properties.load(it) }
+    }
+
+    user = properties.getProperty("bintray.user")
+    key = properties.getProperty("bintray.apikey")
+
+    configurations = ['archives']
+    pkg {
+        repo = 'schroepf'
+        name = artifactIdentifier
+        websiteUrl = siteUrl
+        vcsUrl = gitUrl
+        publish = true
     }
 }
 

@@ -10,7 +10,7 @@ import androidx.test.platform.app.InstrumentationRegistry;
 
 
 /**
- * This {@link TestRule} has no effect on devices with api levels < 24.
+ * This {@link TestRule} has no effect on devices with api levels &lt; 24.
  */
 public class NoAnimationsRule implements TestRule {
     @Override
