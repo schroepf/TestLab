@@ -7,18 +7,18 @@ An [AndroidJUnitRunner](https://developer.android.com/reference/android/support/
 
 ## Integrating android-xml-run-listener
 
-Add dependency to `build.gradle`:
+Add the dependency to the `dependencies` section of your app's `build.gradle` file of:
 
 ### AndroidX compatible
 
 ```
-androidTestCompile 'de.schroepf:android-xml-run-listener:0.4.0'
+androidTestImplementation 'de.schroepf:android-xml-run-listener:0.4.0'
 ```
 
 ### Legacy build (pre AndroidX)
 
 ```
-androidTestCompile 'de.schroepf:android-xml-run-listener-legacy:0.4.0'
+androidTestImplementation 'de.schroepf:android-xml-run-listener-legacy:0.4.0'
 ```
 
 
