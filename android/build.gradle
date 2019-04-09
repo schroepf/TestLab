@@ -20,6 +20,7 @@ buildscript {
         androidx_test_rules_version = '1.1.1'
         androidx_test_orchestrator_version = '1.1.0'
         android_xml_run_listener_version = '0.4.0'
+        android_test_rules_version = '0.0.1'
         androidx_espresso_version = '3.1.1'
         junit_version = '4.12'
         mockito_core_version = '2.23.0'
