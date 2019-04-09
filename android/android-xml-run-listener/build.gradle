@@ -80,7 +80,7 @@ task javadoc(type: Javadoc) {
 
     android.libraryVariants.all { variant ->
         if (variant.name == 'release') {
-            owner.classpath += variant.javaCompile.classpath
+            owner.classpath += variant.javaCompileProvider.get().classpath
         }
     }
 }
@@ -124,5 +124,5 @@ dependencies {
     }
 
     testImplementation "junit:junit:$junit_version"
-    testImplementation 'org.mockito:mockito-core:2.22.0'
+    testImplementation "org.mockito:mockito-core:$mockito_core_version"
 }

@@ -6,7 +6,7 @@ buildscript {
         google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.2.1'
+        classpath 'com.android.tools.build:gradle:3.3.2'
         classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4'
         classpath 'com.github.dcendents:android-maven-gradle-plugin:2.0'
 
@@ -15,13 +15,14 @@ buildscript {
     }
 
     ext {
-        androidx_test_core_version = '1.0.0'
-        androidx_test_runner_version = '1.1.0'
-        androidx_test_rules_version = '1.1.0'
+        androidx_test_core_version = '1.1.0'
+        androidx_test_runner_version = '1.1.1'
+        androidx_test_rules_version = '1.1.1'
         androidx_test_orchestrator_version = '1.1.0'
         android_xml_run_listener_version = '0.3.0'
-        androidx_espresso_version = '3.1.0'
+        androidx_espresso_version = '3.1.1'
         junit_version = '4.12'
+        mockito_core_version = '2.23.0'
     }
 }
 
