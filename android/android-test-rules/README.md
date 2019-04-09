@@ -12,7 +12,7 @@ Add the dependency to the `dependencies` section of your app's `build.gradle` fi
 dependencies {
   ...
 
-  androidTestImplementation 'de.schroepf:android-test-rules:0.0.1'
+  androidTestImplementation 'de.schroepf:android-test-rules:0.1.0'
   ...
 }
 ```
